@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Vet.Infraestrura.Migrations
 {
-    public partial class Inicial : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -24,15 +24,36 @@ namespace Vet.Infraestrura.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Menu",
+                columns: table => new
+                {
+                    Data = table.Column<DateTime>(nullable: false),
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Titulo = table.Column<string>(nullable: true),
+                    MenuId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Menu", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Menu_Menu_MenuId",
+                        column: x => x.MenuId,
+                        principalTable: "Menu",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Profissao",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Data = table.Column<DateTime>(nullable: false),
-                    Nome = table.Column<string>(nullable: true),
-                    Descricao = table.Column<string>(nullable: true),
-                    Crmv = table.Column<string>(nullable: true)
+                    Nome = table.Column<string>(type: "varchar(400)", nullable: false),
+                    Descricao = table.Column<string>(type: "varchar(1000)", nullable: false),
+                    Crmv = table.Column<string>(type: "varchar(30)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -69,12 +90,12 @@ namespace Vet.Infraestrura.Migrations
                     Data = table.Column<DateTime>(nullable: false),
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Logradouro = table.Column<string>(nullable: true),
-                    Complemento = table.Column<string>(nullable: true),
-                    Bairro = table.Column<string>(nullable: true),
-                    Cep = table.Column<string>(nullable: true),
+                    Logradouro = table.Column<string>(type: "varchar(400)", nullable: false),
+                    Complemento = table.Column<string>(type: "varchar(200)", nullable: true),
+                    Bairro = table.Column<string>(type: "varchar(300)", nullable: false),
+                    Cep = table.Column<string>(type: "varchar(10)", nullable: false),
                     Cidade = table.Column<string>(nullable: true),
-                    Estado = table.Column<string>(nullable: true),
+                    Estado = table.Column<string>(type: "varchar(2)", nullable: false),
                     ClienteId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -127,6 +148,11 @@ namespace Vet.Infraestrura.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
+                name: "IX_Menu_MenuId",
+                table: "Menu",
+                column: "MenuId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_ProfissaoCliente_ClienteId",
                 table: "ProfissaoCliente",
                 column: "ClienteId");
@@ -144,6 +170,9 @@ namespace Vet.Infraestrura.Migrations
 
             migrationBuilder.DropTable(
                 name: "Endereco");
+
+            migrationBuilder.DropTable(
+                name: "Menu");
 
             migrationBuilder.DropTable(
                 name: "ProfissaoCliente");

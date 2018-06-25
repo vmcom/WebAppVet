@@ -10,8 +10,8 @@ using Vet.Infraestrura.Data;
 namespace Vet.Infraestrura.Migrations
 {
     [DbContext(typeof(ContextBase))]
-    [Migration("20180625142304_Menu")]
-    partial class Menu
+    [Migration("20180625150315_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
