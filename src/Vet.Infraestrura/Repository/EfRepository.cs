@@ -16,36 +16,36 @@ namespace Vet.Infraestrura.Repository
             _context = context;
         }
 
-        public TEntity Adicionar(TEntity entity)
+        public virtual TEntity Adicionar(TEntity entity)
         {
             _context.Set<TEntity>().Add(entity);
             _context.SaveChanges();
             return entity;
         }
 
-        public TEntity Atualizar(TEntity entity)
+        public virtual TEntity Atualizar(TEntity entity)
         {
             _context.Set<TEntity>().Update(entity);
             _context.SaveChanges();
             return entity;
         }
 
-        public IEnumerable<TEntity> Buscar(Expression<Func<TEntity, bool>> expression)
+        public virtual IEnumerable<TEntity> Buscar(Expression<Func<TEntity, bool>> expression)
         {
             return _context.Set<TEntity>().Where(expression);
         }
 
-        public TEntity Get(int id)
+        public virtual TEntity Get(int id)
         {
             return _context.Set<TEntity>().Find(id);
         }
 
-        public IEnumerable<TEntity> GetAll(TEntity entity)
+        public virtual IEnumerable<TEntity> GetAll(TEntity entity)
         {
             return _context.Set<TEntity>();
         }
 
-        public string Remover(TEntity entity)
+        public virtual string Remover(TEntity entity)
         {
             try
             {
