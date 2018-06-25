@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Vet.UI.Web.Data;
 using Vet.UI.Web.Models;
 using Vet.UI.Web.Services;
+using Vet.Infraestrura.Data;
 
 namespace Vet.UI.Web
 {
@@ -32,6 +33,9 @@ namespace Vet.UI.Web
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
+
+            services.AddDbContext<ContextBase>(options =>
+            options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();

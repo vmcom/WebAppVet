@@ -11,10 +11,12 @@ namespace Vet.AppCore.Entity
 
         public Cliente()
         {
-
+            Contatos = new HashSet<Contato>();
         }
 
-        
+        public ICollection<Contato> Contatos { get; set; }
+        public Endereco Endereco { get; set; }
+        public ICollection<ProfissaoCliente> Profissoes { get; set; }
 
     }
 }
