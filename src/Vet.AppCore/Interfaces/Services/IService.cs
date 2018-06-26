@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Text;
+using Vet.AppCore.Entity;
 
-namespace Vet.AppCore.Interfaces.Repository
+namespace Vet.AppCore.Interfaces.Services
 {
-    public interface IRepository<TEntity> where TEntity:class
+    public interface IService<TEntity> where TEntity : class
     {
         TEntity Adicionar(TEntity entity);
         TEntity Atualizar(TEntity entity);

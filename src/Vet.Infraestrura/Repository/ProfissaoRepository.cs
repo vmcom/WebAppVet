@@ -7,7 +7,7 @@ using Vet.Infraestrura.Data;
 
 namespace Vet.Infraestrura.Repository
 {
-    public class ProfissaoRepository : EfRepository<Profissao>, IProfissiaoRepository
+    public class ProfissaoRepository : EfRepository<Profissao>, IProfissaoRepository
     {
         public ProfissaoRepository(ContextBase context) : base(context)
         {

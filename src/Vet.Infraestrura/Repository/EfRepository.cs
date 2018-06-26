@@ -40,7 +40,7 @@ namespace Vet.Infraestrura.Repository
             return _context.Set<TEntity>().Find(id);
         }
 
-        public virtual IEnumerable<TEntity> GetAll(TEntity entity)
+        public virtual IEnumerable<TEntity> GetAll()
         {
             return _context.Set<TEntity>();
         }

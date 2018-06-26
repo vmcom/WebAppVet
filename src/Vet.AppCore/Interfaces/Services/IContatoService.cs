@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Text;
 using Vet.AppCore.Entity;
 
-namespace Vet.AppCore.Interfaces.Repository
+namespace Vet.AppCore.Interfaces.Services
 {
-    public interface IProfissiaoRepository : IRepository<Profissao>
+    public interface IContatoService : IService<Contato>
     {
-
+        
     }
 }
